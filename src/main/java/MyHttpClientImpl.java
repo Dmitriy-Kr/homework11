@@ -16,19 +16,23 @@ public class MyHttpClientImpl implements MyHttpClient {
                          Consumer<Exception> processException) {
 
         HttpClient client = HttpClient.newBuilder().build();
-        HttpRequest request = HttpRequest.newBuilder()
-                .GET()
-                .uri(URI.create(url))
-                .headers(headers.entrySet().stream()
-                        .map(header -> new String[]{header.getKey(), header.getValue()})
-                        .flatMap(Arrays::stream)
-                        .toArray(String[]::new))
-                .build();
 
         new Thread(() -> {
+
             try {
+
+                HttpRequest request = HttpRequest.newBuilder()
+                        .GET()
+                        .uri(URI.create(url))
+                        .headers(headers.entrySet().stream()
+                                .map(header -> new String[]{header.getKey(), header.getValue()})
+                                .flatMap(Arrays::stream)
+                                .toArray(String[]::new))
+                        .build();
+
                 HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString(StandardCharsets.UTF_8));
                 processResponse.accept(response);
+
             } catch (Exception e) {
                 processException.accept(e);
             }
@@ -43,19 +47,23 @@ public class MyHttpClientImpl implements MyHttpClient {
                           Consumer<Exception> processException) {
 
         HttpClient client = HttpClient.newBuilder().build();
-        HttpRequest request = HttpRequest.newBuilder()
-                .POST(HttpRequest.BodyPublishers.ofString(requestBody))
-                .uri(URI.create(url))
-                .headers(headers.entrySet().stream()
-                        .map(header -> new String[]{header.getKey(), header.getValue()})
-                        .flatMap(Arrays::stream)
-                        .toArray(String[]::new))
-                .build();
 
         new Thread(() -> {
+
             try {
+
+                HttpRequest request = HttpRequest.newBuilder()
+                        .POST(HttpRequest.BodyPublishers.ofString(requestBody))
+                        .uri(URI.create(url))
+                        .headers(headers.entrySet().stream()
+                                .map(header -> new String[]{header.getKey(), header.getValue()})
+                                .flatMap(Arrays::stream)
+                                .toArray(String[]::new))
+                        .build();
+
                 HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString(StandardCharsets.UTF_8));
                 processResponse.accept(response);
+
             } catch (Exception e) {
                 processException.accept(e);
             }
@@ -70,19 +78,23 @@ public class MyHttpClientImpl implements MyHttpClient {
                          Consumer<Exception> processException) {
 
         HttpClient client = HttpClient.newBuilder().build();
-        HttpRequest request = HttpRequest.newBuilder()
-                .PUT(HttpRequest.BodyPublishers.ofString(requestBody))
-                .uri(URI.create(url))
-                .headers(headers.entrySet().stream()
-                        .map(header -> new String[]{header.getKey(), header.getValue()})
-                        .flatMap(Arrays::stream)
-                        .toArray(String[]::new))
-                .build();
 
         new Thread(() -> {
+
             try {
+
+                HttpRequest request = HttpRequest.newBuilder()
+                        .PUT(HttpRequest.BodyPublishers.ofString(requestBody))
+                        .uri(URI.create(url))
+                        .headers(headers.entrySet().stream()
+                                .map(header -> new String[]{header.getKey(), header.getValue()})
+                                .flatMap(Arrays::stream)
+                                .toArray(String[]::new))
+                        .build();
+
                 HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString(StandardCharsets.UTF_8));
                 processResponse.accept(response);
+
             } catch (Exception e) {
                 processException.accept(e);
             }
@@ -97,19 +109,23 @@ public class MyHttpClientImpl implements MyHttpClient {
                             Consumer<Exception> processException) {
 
         HttpClient client = HttpClient.newBuilder().build();
-        HttpRequest request = HttpRequest.newBuilder()
-                .method("DELETE", HttpRequest.BodyPublishers.ofString(requestBody))
-                .uri(URI.create(url))
-                .headers(headers.entrySet().stream()
-                        .map(header -> new String[]{header.getKey(), header.getValue()})
-                        .flatMap(Arrays::stream)
-                        .toArray(String[]::new))
-                .build();
 
         new Thread(() -> {
+
             try {
+
+                HttpRequest request = HttpRequest.newBuilder()
+                        .method("DELETE", HttpRequest.BodyPublishers.ofString(requestBody))
+                        .uri(URI.create(url))
+                        .headers(headers.entrySet().stream()
+                                .map(header -> new String[]{header.getKey(), header.getValue()})
+                                .flatMap(Arrays::stream)
+                                .toArray(String[]::new))
+                        .build();
+
                 HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString(StandardCharsets.UTF_8));
                 processResponse.accept(response);
+
             } catch (Exception e) {
                 processException.accept(e);
             }
